@@ -4,35 +4,12 @@ LAB: FROM PROTOTYPE TO ENTERPRISE
 Crossing the Proof-of-Concept Chasm
 ============================================================
 
-You will take a working multi-agent PROTOTYPE (the Day 3
-report generator) and upgrade it, stage by stage, into an
-ENTERPRISE-grade agent — exactly the journey described in
-the Day 5 slides ("Prototype agents vs enterprise
-production agents").
-
-HOW TO USE THIS FILE
---------------------
-The whole lab lives in this one file. A single constant
-controls which "maturity level" is active:
-
-    LAB_STAGE=0 python lab_prototype_to_enterprise.py
-
-  Stage 0  PROTOTYPE        multi-agent graph, happy path only
   Stage 1  ROBUSTNESS       retries, backoff, timeouts, graceful failure
   Stage 2  CONFIG & SECRETS no hardcoded values, .env, Settings object
   Stage 3  OBSERVABILITY    structured JSON logs, latency, run IDs
   Stage 4  GUARDRAILS+COST  input/output validation, token budget
   Stage 5  SERVING          expose the agent as a FastAPI endpoint:
                             LAB_STAGE=5 python lab_prototype_to_enterprise.py serve
-
-Each stage KEEPS everything from the stages below it.
-Search for "YOUR TURN" to find the student exercises.
-
-NO API KEY? Run with MOCK=1 to use a fake model:
-    MOCK=1 LAB_STAGE=3 python lab_prototype_to_enterprise.py
-
-Requirements:
-    pip install langchain-openai langgraph python-dotenv fastapi uvicorn
 ============================================================
 """
 
@@ -62,10 +39,6 @@ MOCK = os.getenv("MOCK", "0") == "1"
 # ============================================================
 # STAGE 2 — CONFIGURATION & SECRETS
 # ------------------------------------------------------------
-# Prototype behavior (Stage 0-1): values are hardcoded below.
-# Enterprise behavior (Stage 2+): everything comes from the
-# environment / .env file. Nothing secret lives in the code.
-# ============================================================
 
 
 @dataclass
@@ -104,12 +77,6 @@ else:
     # Deliberately "prototype-style": tweak by editing source code.
     settings = Settings()
 
-# ── YOUR TURN (Stage 2) ─────────────────────────────────────
-# Add a new setting `report_style` (values: "formal" | "casual"),
-# read it from the environment, and use it in the Writing
-# Agent's prompt below. Prove it works without editing code:
-#   REPORT_STYLE=casual LAB_STAGE=2 python lab_... .py
-# ────────────────────────────────────────────────────────────
 
 
 # ============================================================
