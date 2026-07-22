@@ -11,8 +11,7 @@ Crossing the Proof-of-Concept Chasm
   Stage 2  CONFIG & SECRETS no hardcoded values, .env, Settings object
   Stage 3  OBSERVABILITY    structured JSON logs, latency, run IDs
   Stage 4  GUARDRAILS+COST  input/output validation, token budget
-  Stage 5  SERVING          expose the agent as a FastAPI endpoint:
-                            LAB_STAGE=5 python lab_prototype_to_enterprise.py serve
+  Stage 5  SERVING          expose the agent as a FastAPI endpoint
 
 
 ============================================================
